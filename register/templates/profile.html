@@ -1,0 +1,22 @@
+<html>
+<head>
+</head>
+<body>
+	
+{% load crispy_forms_tags %}
+
+{{form.media}}
+
+<div class='col-sm-6 col-sm-offset-3'>
+<h1>Form</h1>
+
+<form method='POST' action='detail/' enctype='multipart/form-data' >
+  {% csrf_token %}
+{{ form |crispy }}
+
+<input class= "btn-btn-default"  type='submit' value='CreatePost' />
+</form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<html>
+<head>
+	<title>
+			Main Page
+	</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+</head>
+<body >
+	<div class="container">
+<h1 style ="color: 	#000000;">&nbsp &nbsp 	Welcome </h1>
+<hr>
+  {%block content %}
+
+<h1 style="text-align:center;top-margin:60px;padding-top:150px;"><b>Register Yourself to Explore Us!</b></h1>
+  <p style="font-size:25px; text-align:center;padding-top:10px;">Please <a style ="color:   	#DC143C;text-decoration:none;" href="signup/">Register </a></p> <p style="font-size:25px; text-align:center;">or</p>
+
+		<p style="font-size:25px; text-align:center;padding-top:10px;"><a style ="color:#DC143C;text-decoration:none;" href="login/">Login</a></p>
+		{% endblock %}
+</div>
+
+
+{% if user.is_authenticated %}
+			<a style="font-size:20px;  padding-left:10px;  text-decoration:none;color:   	#000000;" href="logout/">Logout</a><br /><br>
+<a style ="color:#DC143C;text-decoration:none;" href="profile/">Profile</a>
+<a href="/create">Create</a>
+<a href="/show_list">Show All</a>
+	{% endif %}
+
+</body>
+<footer >
+      <p>@Copyright info
+
+    </footer>
+
+</html>
