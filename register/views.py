@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from forms import SignUpForm, Form
 from .models import images
 from urllib import quote_plus
+from django.contrib.auth import logout as django_logout
 # Create your views here.
 
 def base(request):
@@ -38,8 +39,9 @@ def post_create(request):
         instance.user=request.user
         instance.save()
         # message success
-        return render(request, "show.html",context)
-    
+
+        return redirect("/show_list/")
+
     return render(request, "profile.html", context)
 
 def show_list(request): #list items
@@ -47,7 +49,7 @@ def show_list(request): #list items
     query=request.GET.get("q")
     if query:
         queryset_list=queryset_list.filter(title__icontains=query)
-   
+
     context = {
         "object_list": queryset_list,
         "title": "List"
@@ -57,3 +59,7 @@ def show_list(request): #list items
 def detail(request,id=None): #retrieve
     context = RequestContext(request)
     return render_to_response('detail.html', context)
+
+def logout_view(request):
+    django_logout(request)
+    return redirect("/")

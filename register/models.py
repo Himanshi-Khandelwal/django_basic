@@ -7,16 +7,15 @@ from django.conf import settings
 # MVC MODEL VIEW CONTROLLER
 
 class images(models.Model):
-    
+
     title = models.CharField(max_length=120)
-    image = models.ImageField(upload_to='profile_image' , blank=True)
+    image = models.ImageField(upload_to='pytesser' , blank=True)
     content = models.TextField()
     
+
 
     def __unicode__(self):
         return self.title
 
     def __str__(self):
         return self.title
-
-    
