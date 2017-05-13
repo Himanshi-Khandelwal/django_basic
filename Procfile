@@ -1,1 +1,1 @@
-web: gunicorn tweety.wsgi
+web: gunicorn tweety.wsgi --log-file -
