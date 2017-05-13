@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect , get_object_or_404,redirect,rende
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
-from forms import SignUpForm, Form
+from forms import SignUpForm, Formss
 from .models import images
 from urllib import quote_plus
+from django.contrib.auth.models import User
 from django.contrib.auth import logout as django_logout
 # Create your views here.
 
@@ -18,11 +18,16 @@ def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
+           # form.save()
+	    user = User.objects.create_user(
+            username=form.cleaned_data['username'],
+            password=form.cleaned_data['password1'],
+            email=form.cleaned_data['email']
+            )
+           # username = form.cleaned_data.get('username')
+            #raw_password = form.cleaned_data.get('password2')
+            #user = authenticate(username=username, password=raw_password)
+            #login(request, user)
             return redirect('base')
     else:
         form = SignUpForm()
@@ -30,7 +35,7 @@ def signup(request):
 
 
 def post_create(request):
-    form = Form(request.POST or None,request.FILES or None)
+    form = Formss(request.POST or None,request.FILES or None)
     context = {
         "form": form,
     }
