@@ -4,7 +4,7 @@ from pagedown.widgets import PagedownWidget
 from django.contrib.auth import get_user_model
 from .models import images
 
-User = get_user_model.create()
+User = get_user_model()
 
 class SignUpForm(UserCreationForm):
     
